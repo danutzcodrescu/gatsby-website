@@ -12,7 +12,8 @@
   },
   "plugins": ["react-hooks"],
   "rules": {
-    "@typescript-eslint/camelcase": "warning"
+    "@typescript-eslint/camelcase": "warning",
+    "@typescript-eslint/explicit-function-return-type",
   },
   "settings": {
     "react": {
