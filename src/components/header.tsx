@@ -1,25 +1,31 @@
 import { Link } from 'gatsby';
 import React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeConsumer } from 'styled-components';
+import { DarkThemeProps } from 'theme/dark.theme';
 
 const size = '1.75rem';
 
-const Container = styled.header`
-  border-bottom: 2px solid #b362ff;
+const Container = styled.header<DarkThemeProps>`
+  border-bottom: 2px solid ${props => props.palette.contrast};
   box-sizing: border-box;
-  display: flex;
+  display: grid;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  grid-template-columns: 1fr auto auto auto;
   a:first-of-type {
     margin-right: auto;
     text-decoration: none;
   }
+  @media (max-width: 375px) {
+    a:first-of-type {
+      grid-column: 1 / span 4;
+      margin-bottom: 1rem;
+    }
+  }
 `;
 
-const H1 = styled.h1`
+const H1 = styled.h1<DarkThemeProps>`
    {
-    color: white;
+    color: ${props => props.palette.primary};
     position absolute;
     top: 10px;
     font-size: ${size};
@@ -35,7 +41,7 @@ const H1 = styled.h1`
   }
 `;
 
-const Nav = styled.nav`
+const Nav = styled.nav<DarkThemeProps>`
   text-transform: uppercase;
   font-weight: 900;
   ul {
@@ -50,25 +56,25 @@ const Nav = styled.nav`
     a {
       text-decoration: none;
       padding: 15px 20px 18px;
-      color: white;
+      color: ${props => props.palette.primary};
       font-size: 1.3rem;
       transition: box-shadow 150ms ease-in-out, color 150ms;
       box-shadow: 0px 0px 0px 0px #a599e9 inset;
       &:hover {
-        color: black;
+        color: ${props => props.palette.hover};
         box-shadow: 0px -4rem 0px 0px #a599e9 inset;
       }
     }
   }
 `;
 
-const Logo = styled.span`
+const Logo = styled.span<DarkThemeProps>`
   display: block;
   font-weight: 900;
   font-size: ${size};
   padding: 0.85rem;
   background-color: #fad000;
-  color: black;
+  color: ${props => props.palette.hover};
   position: relative;
   z-index: 100;
 `;
@@ -83,34 +89,40 @@ const Header = ({ siteTitle }: Props) => {
     setHovered(!hovered);
   }
   return (
-    <Container>
-      <Link to="/">
-        <Logo onMouseOver={mouseOver} onMouseOut={mouseOver}>
-          DC
-        </Logo>
-        <H1 className={hovered ? 'active' : ''}>Danut Codrescu</H1>
-      </Link>
-      <Nav>
-        <ul>
-          <li>
-            <Link to="/" onMouseOver={mouseOver} onMouseOut={mouseOver}>
-              About
-            </Link>
-          </li>
-          <li>
-            <Link to="/" onMouseOver={mouseOver} onMouseOut={mouseOver}>
-              Blog
-            </Link>
-          </li>
+    <ThemeConsumer>
+      {theme => (
+        <Container {...theme}>
+          <Link to="/">
+            <Logo onMouseOver={mouseOver} onMouseOut={mouseOver} {...theme}>
+              DC
+            </Logo>
+            <H1 className={hovered ? 'active' : ''} {...theme}>
+              Danut Codrescu
+            </H1>
+          </Link>
+          <Nav {...theme}>
+            <ul>
+              <li>
+                <Link to="/" onMouseOver={mouseOver} onMouseOut={mouseOver}>
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link to="/" onMouseOver={mouseOver} onMouseOut={mouseOver}>
+                  Blog
+                </Link>
+              </li>
 
-          <li>
-            <Link to="/" onMouseOver={mouseOver} onMouseOut={mouseOver}>
-              Uses
-            </Link>
-          </li>
-        </ul>
-      </Nav>
-    </Container>
+              <li>
+                <Link to="/" onMouseOver={mouseOver} onMouseOut={mouseOver}>
+                  Uses
+                </Link>
+              </li>
+            </ul>
+          </Nav>
+        </Container>
+      )}
+    </ThemeConsumer>
   );
 };
 
