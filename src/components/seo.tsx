@@ -84,6 +84,10 @@ function SEO({ description, lang, meta, keywords, title }: any) {
         href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
         integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
       />
+      <link
+        href="https://fonts.googleapis.com/css?family=Roboto"
+        rel="stylesheet"
+      />
     </Helmet>
   );
 }

@@ -59,10 +59,15 @@ const Nav = styled.nav<DarkThemeProps>`
       color: ${props => props.palette.primary};
       font-size: 1.3rem;
       transition: box-shadow 150ms ease-in-out, color 150ms;
-      box-shadow: 0px 0px 0px 0px #a599e9 inset;
+
       &:hover {
         color: ${props => props.palette.hover};
-        box-shadow: 0px -4rem 0px 0px #a599e9 inset;
+      }
+      @media (min-width: 756px) {
+        box-shadow: 0px 0px 0px 0px ${props => props.palette.contrast} inset;
+        &: hover {
+          box-shadow: 0px -4rem 0px 0px ${props => props.palette.contrast} inset;
+        }
       }
     }
   }
@@ -86,7 +91,9 @@ interface Props {
 const Header = ({ siteTitle }: Props) => {
   const [hovered, setHovered] = React.useState<boolean>(false);
   function mouseOver() {
-    setHovered(!hovered);
+    if (window.innerWidth > 756) {
+      setHovered(!hovered);
+    }
   }
   return (
     <ThemeConsumer>
@@ -103,7 +110,11 @@ const Header = ({ siteTitle }: Props) => {
           <Nav {...theme}>
             <ul>
               <li>
-                <Link to="/" onMouseOver={mouseOver} onMouseOut={mouseOver}>
+                <Link
+                  to="/about"
+                  onMouseOver={mouseOver}
+                  onMouseOut={mouseOver}
+                >
                   About
                 </Link>
               </li>

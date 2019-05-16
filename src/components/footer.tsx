@@ -26,13 +26,16 @@ const Container = styled.footer<DarkThemeProps>`
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all 0.7s;
     &:hover {
       background-color: ${props => props.palette.primary};
       border: none;
       color: ${props => props.palette.contrast};
+      transform: scale(1.3);
     }
     @media (max-width: 375px) {
       margin: 0.5rem 0;
+      transform: none;
     }
   }
 `;
