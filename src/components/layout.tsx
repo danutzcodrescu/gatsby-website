@@ -20,8 +20,17 @@ interface Props {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   height: 100vh;
+
+  @media (max-width: 756px) {
+    height: auto;
+  }
+`;
+const Main = styled.main`
+  min-height: calc(100vh - 160px);
+  @media (max-width: 756px) {
+    min-height: none;
+  }
 `;
 
 const Layout = ({ children }: Props) => (
@@ -39,17 +48,8 @@ const Layout = ({ children }: Props) => (
       <ThemeProvider theme={theme}>
         <Container>
           <Header siteTitle={data.site.siteMetadata.title} />
-          <div
-            style={{
-              margin: `0 auto`,
-              maxWidth: 960,
-              padding: `0px 1.0875rem 1.45rem`,
-              paddingTop: 0,
-              maxHeight: 'calc(100vh - 160px)',
-            }}
-          >
-            <main>{children}</main>
-          </div>
+
+          <Main>{children}</Main>
           <Footer />
         </Container>
       </ThemeProvider>
