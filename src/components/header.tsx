@@ -70,6 +70,9 @@ const Nav = styled.nav<DarkThemeProps>`
         }
       }
     }
+    @media (max-width: 375px) {
+      justify-content: center;
+    }
   }
 `;
 

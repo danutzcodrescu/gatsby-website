@@ -11,8 +11,15 @@ const Container = styled.footer<DarkThemeProps>`
   box-sizing: border-box;
 
   @media (max-width: 375px) {
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 1rem;
+    justify-content: center;
+
+    a:nth-child(3) {
+      justify-self: center;
+      grid-column: span 2;
+    }
   }
 
   a {

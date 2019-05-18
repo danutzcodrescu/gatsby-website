@@ -9,7 +9,8 @@ const Container = styled.div`
   flex-wrap: wrap;
   text-align: center;
   align-items: center;
-  height: 100%;
+  min-height: inherit;
+  padding: 1rem;
   > * {
     width: 100%;
   }

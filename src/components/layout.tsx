@@ -28,9 +28,6 @@ const Container = styled.div`
 `;
 const Main = styled.main`
   min-height: calc(100vh - 160px);
-  @media (max-width: 756px) {
-    min-height: none;
-  }
 `;
 
 const Layout = ({ children }: Props) => (
