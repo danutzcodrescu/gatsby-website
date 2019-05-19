@@ -22,7 +22,7 @@ const Introduction = styled.p<DarkThemeProps>`
 `;
 
 const SecondPage = () => (
-  <Layout>
+  <Layout path="/about">
     <SEO title="About" />
     <ThemeConsumer>
       {theme => (

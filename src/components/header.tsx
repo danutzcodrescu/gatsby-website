@@ -128,7 +128,7 @@ const Header = ({ siteTitle }: Props) => {
               </li>
 
               <li>
-                <Link to="/" onMouseOver={mouseOver} onMouseOut={mouseOver}>
+                <Link to="/uses" onMouseOver={mouseOver} onMouseOut={mouseOver}>
                   Uses
                 </Link>
               </li>

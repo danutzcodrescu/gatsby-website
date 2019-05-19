@@ -15,6 +15,7 @@ import './layout.css';
 
 interface Props {
   children: React.ReactNode;
+  path: string;
 }
 
 const Container = styled.div`
@@ -26,14 +27,14 @@ const Container = styled.div`
     height: auto;
   }
 `;
-const Main = styled.main`
-  min-height: calc(100vh - 160px);
+const Main = styled.main<{ path: string }>`
+  min-height: ${props => (props.path === '/' ? 'calc(100vh - 160px)' : 'none')};
   @media (max-width: 375px) {
     min-height: calc(100vh - 300px);
   }
 `;
 
-const Layout = ({ children }: Props) => (
+const Layout = ({ children, path }: Props) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -49,7 +50,7 @@ const Layout = ({ children }: Props) => (
         <Container>
           <Header siteTitle={data.site.siteMetadata.title} />
 
-          <Main>{children}</Main>
+          <Main path={path}>{children}</Main>
           <Footer />
         </Container>
       </ThemeProvider>

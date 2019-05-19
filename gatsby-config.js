@@ -35,6 +35,31 @@ module.exports = {
     },
     `gatsby-plugin-typescript`,
     `gatsby-plugin-eslint`,
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/src/content/uses`,
+        name: 'uses',
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/src/content/about`,
+        name: 'about',
+      },
+    },
+    {
+      resolve: `gatsby-mdx`,
+      options: {
+        defaultLayouts: {
+          default: `${__dirname}/src/templates/markdown-page.tsx`,
+        },
+        extensions: ['.mdx', '.md', '.markdown'],
+        gatsbyRemarkPlugins: [{ resolve: 'gatsby-remark-copy-linked-files' }],
+      },
+    },
+    `gatsby-transformer-remark`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
