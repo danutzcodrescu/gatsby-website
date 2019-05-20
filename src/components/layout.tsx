@@ -29,7 +29,7 @@ const Container = styled.div`
 `;
 const Main = styled.main<{ path: string }>`
   min-height: ${props =>
-    props.path === '/' || props.path === '/contact'
+    ['/', '/contact', '/success'].includes(props.path)
       ? 'calc(100vh - 160px)'
       : 'none'};
   @media (max-width: 375px) {
