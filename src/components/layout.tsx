@@ -28,7 +28,10 @@ const Container = styled.div`
   }
 `;
 const Main = styled.main<{ path: string }>`
-  min-height: ${props => (props.path === '/' ? 'calc(100vh - 160px)' : 'none')};
+  min-height: ${props =>
+    props.path === '/' || props.path === '/contact'
+      ? 'calc(100vh - 160px)'
+      : 'none'};
   @media (max-width: 375px) {
     min-height: calc(100vh - 300px);
   }

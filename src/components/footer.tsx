@@ -1,3 +1,4 @@
+import { Link } from 'gatsby';
 import * as React from 'react';
 import styled, { ThemeConsumer } from 'styled-components';
 import { DarkThemeProps } from 'theme/dark.theme';
@@ -66,13 +67,9 @@ export function Footer() {
           >
             <i className="fab fa-linkedin fa-2x" />
           </a>
-          <a
-            href="https://github.com/danutzcodrescu"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <Link to="/contact">
             <i className="fas fa-envelope fa-2x" />
-          </a>
+          </Link>
         </Container>
       )}
     </ThemeConsumer>

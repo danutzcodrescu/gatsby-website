@@ -1,4 +1,4 @@
-import { graphql } from 'gatsby';
+// @ts-ignore
 import * as React from 'react';
 import styled, { ThemeConsumer } from 'styled-components';
 import { DarkThemeProps } from 'theme/dark.theme';
@@ -26,28 +26,8 @@ export default function MdTemplate(props: Props) {
     <Layout path={props.location.pathname}>
       <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
       <ThemeConsumer>
-        {theme => (
-          <Container {...theme}>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: props.data.markdownRemark.html,
-              }}
-            />
-          </Container>
-        )}
+        {theme => <Container {...theme}>{props.children}</Container>}
       </ThemeConsumer>
     </Layout>
   );
 }
-
-export const pageQuery = graphql`
-  query($path: String!) {
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
-      html
-      frontmatter {
-        path
-        title
-      }
-    }
-  }
-`;

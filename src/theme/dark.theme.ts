@@ -3,6 +3,7 @@ const theme = {
     primary: 'white',
     hover: 'black',
     contrast: '#b362ff',
+    gold: '#fad000',
   },
 };
 

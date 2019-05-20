@@ -35,18 +35,18 @@ module.exports = {
     },
     `gatsby-plugin-typescript`,
     `gatsby-plugin-eslint`,
+    // {
+    //   resolve: 'gatsby-source-filesystem',
+    //   options: {
+    //     path: `${__dirname}/src/content/uses`,
+    //     name: 'uses',
+    //   },
+    // },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${__dirname}/src/content/uses`,
-        name: 'uses',
-      },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/src/content/about`,
-        name: 'about',
+        path: `${__dirname}/src/pages/`,
+        name: 'pages',
       },
     },
     {
