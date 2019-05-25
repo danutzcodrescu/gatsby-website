@@ -35,13 +35,13 @@ module.exports = {
     },
     `gatsby-plugin-typescript`,
     `gatsby-plugin-eslint`,
-    // {
-    //   resolve: 'gatsby-source-filesystem',
-    //   options: {
-    //     path: `${__dirname}/src/content/uses`,
-    //     name: 'uses',
-    //   },
-    // },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/src/content/blog/`,
+        name: 'blog',
+      },
+    },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -53,10 +53,22 @@ module.exports = {
       resolve: `gatsby-mdx`,
       options: {
         defaultLayouts: {
-          default: `${__dirname}/src/templates/markdown-page.tsx`,
+          default: `${__dirname}/src/templates/markdown-page.template.tsx`,
         },
         extensions: ['.mdx', '.md', '.markdown'],
-        gatsbyRemarkPlugins: [{ resolve: 'gatsby-remark-copy-linked-files' }],
+        gatsbyRemarkPlugins: [
+          { resolve: 'gatsby-remark-copy-linked-files' },
+          {
+            resolve: 'gatsby-remark-prismjs',
+            options: {
+              classPrefix: 'language-',
+              inlineCodeMarker: {
+                tsx: 'tsx',
+              },
+              aliases: {},
+            },
+          },
+        ],
       },
     },
     `gatsby-transformer-remark`,

@@ -1,13 +1,12 @@
 import { Link } from 'gatsby';
 import * as React from 'react';
-import styled, { ThemeConsumer } from 'styled-components';
-import { DarkThemeProps } from 'theme/dark.theme';
+import styled from 'styled-components';
 
-const Container = styled.footer<DarkThemeProps>`
+const Container = styled.footer`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  border-top: 2px solid ${props => props.palette.contrast};
+  border-top: 2px solid ${props => props.theme.palette.contrast};
   padding: 1rem 0;
   box-sizing: border-box;
 
@@ -29,16 +28,16 @@ const Container = styled.footer<DarkThemeProps>`
     height: 60px;
     width: 60px;
     border-radius: 100%;
-    border: 2px solid ${props => props.palette.contrast};
+    border: 2px solid ${props => props.theme.palette.contrast};
     margin: 0 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: all 0.7s;
     &:hover {
-      background-color: ${props => props.palette.primary};
+      background-color: ${props => props.theme.palette.primary};
       border: none;
-      color: ${props => props.palette.contrast};
+      color: ${props => props.theme.palette.contrast};
       transform: scale(1.3);
     }
     @media (max-width: 375px) {
@@ -50,28 +49,24 @@ const Container = styled.footer<DarkThemeProps>`
 
 export function Footer() {
   return (
-    <ThemeConsumer>
-      {theme => (
-        <Container {...theme}>
-          <a
-            href="https://github.com/danutzcodrescu"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <i className="fab fa-github fa-2x" />
-          </a>
-          <a
-            href="https://github.com/danutzcodrescu"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <i className="fab fa-linkedin fa-2x" />
-          </a>
-          <Link to="/contact">
-            <i className="fas fa-envelope fa-2x" />
-          </Link>
-        </Container>
-      )}
-    </ThemeConsumer>
+    <Container>
+      <a
+        href="https://github.com/danutzcodrescu"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <i className="fab fa-github fa-2x" />
+      </a>
+      <a
+        href="https://github.com/danutzcodrescu"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <i className="fab fa-linkedin fa-2x" />
+      </a>
+      <Link to="/contact">
+        <i className="fas fa-envelope fa-2x" />
+      </Link>
+    </Container>
   );
 }

@@ -1,5 +1,4 @@
 ---
-path: '/uses'
 title: 'Uses'
 ---
 

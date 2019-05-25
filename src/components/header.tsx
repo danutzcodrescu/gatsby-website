@@ -1,12 +1,11 @@
 import { Link } from 'gatsby';
 import React from 'react';
-import styled, { ThemeConsumer } from 'styled-components';
-import { DarkThemeProps } from 'theme/dark.theme';
+import styled from 'styled-components';
 
 const size = '1.75rem';
 
-const Container = styled.header<DarkThemeProps>`
-  border-bottom: 2px solid ${props => props.palette.contrast};
+const Container = styled.header`
+  border-bottom: 2px solid ${props => props.theme.palette.contrast};
   box-sizing: border-box;
   display: grid;
   align-items: center;
@@ -23,9 +22,9 @@ const Container = styled.header<DarkThemeProps>`
   }
 `;
 
-const H1 = styled.h1<DarkThemeProps>`
+const H1 = styled.h1`
    {
-    color: ${props => props.palette.primary};
+    color: ${props => props.theme.palette.primary};
     position absolute;
     top: 10px;
     font-size: ${size};
@@ -41,7 +40,7 @@ const H1 = styled.h1<DarkThemeProps>`
   }
 `;
 
-const Nav = styled.nav<DarkThemeProps>`
+const Nav = styled.nav`
   text-transform: uppercase;
   font-weight: 900;
   ul {
@@ -56,17 +55,19 @@ const Nav = styled.nav<DarkThemeProps>`
     a {
       text-decoration: none;
       padding: 15px 20px 18px;
-      color: ${props => props.palette.primary};
+      color: ${props => props.theme.palette.primary};
       font-size: 1.3rem;
       transition: box-shadow 150ms ease-in-out, color 150ms;
 
       &:hover {
-        color: ${props => props.palette.hover};
+        color: ${props => props.theme.palette.hover};
       }
       @media (min-width: 756px) {
-        box-shadow: 0px 0px 0px 0px ${props => props.palette.contrast} inset;
+        box-shadow: 0px 0px 0px 0px ${props => props.theme.palette.contrast}
+          inset;
         &: hover {
-          box-shadow: 0px -4rem 0px 0px ${props => props.palette.contrast} inset;
+          box-shadow: 0px -4rem 0px 0px ${props => props.theme.palette.contrast}
+            inset;
         }
       }
     }
@@ -76,13 +77,13 @@ const Nav = styled.nav<DarkThemeProps>`
   }
 `;
 
-const Logo = styled.span<DarkThemeProps>`
+const Logo = styled.span`
   display: block;
   font-weight: 900;
   font-size: ${size};
   padding: 0.85rem;
   background-color: #fad000;
-  color: ${props => props.palette.hover};
+  color: ${props => props.theme.palette.hover};
   position: relative;
   z-index: 100;
 `;
@@ -99,44 +100,34 @@ const Header = ({ siteTitle }: Props) => {
     }
   }
   return (
-    <ThemeConsumer>
-      {theme => (
-        <Container {...theme}>
-          <Link to="/">
-            <Logo onMouseOver={mouseOver} onMouseOut={mouseOver} {...theme}>
-              DC
-            </Logo>
-            <H1 className={hovered ? 'active' : ''} {...theme}>
-              Danut Codrescu
-            </H1>
-          </Link>
-          <Nav {...theme}>
-            <ul>
-              <li>
-                <Link
-                  to="/about"
-                  onMouseOver={mouseOver}
-                  onMouseOut={mouseOver}
-                >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link to="/" onMouseOver={mouseOver} onMouseOut={mouseOver}>
-                  Blog
-                </Link>
-              </li>
+    <Container>
+      <Link to="/">
+        <Logo onMouseOver={mouseOver} onMouseOut={mouseOver}>
+          DC
+        </Logo>
+        <H1 className={hovered ? 'active' : ''}>Danut Codrescu</H1>
+      </Link>
+      <Nav>
+        <ul>
+          <li>
+            <Link to="/about" onMouseOver={mouseOver} onMouseOut={mouseOver}>
+              About
+            </Link>
+          </li>
+          <li>
+            <Link to="/blog" onMouseOver={mouseOver} onMouseOut={mouseOver}>
+              Blog
+            </Link>
+          </li>
 
-              <li>
-                <Link to="/uses" onMouseOver={mouseOver} onMouseOut={mouseOver}>
-                  Uses
-                </Link>
-              </li>
-            </ul>
-          </Nav>
-        </Container>
-      )}
-    </ThemeConsumer>
+          <li>
+            <Link to="/uses" onMouseOver={mouseOver} onMouseOut={mouseOver}>
+              Uses
+            </Link>
+          </li>
+        </ul>
+      </Nav>
+    </Container>
   );
 };
 

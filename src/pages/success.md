@@ -1,5 +1,4 @@
 ---
-path: '/success'
 title: 'Success'
 ---
 
